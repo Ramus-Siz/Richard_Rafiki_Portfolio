@@ -19,7 +19,9 @@ export default function Header() {
             <Link href="/contact"></Link>
             <Button>Me contacter</Button>
             </div>
-            <MobileNav/>
+            <div className="xl:hidden">
+                <MobileNav/>
+            </div>
         </div>
     </header>
 }
