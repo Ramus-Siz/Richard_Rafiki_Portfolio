@@ -1,5 +1,5 @@
 "use client";
-import { FaHtml5, FaCss3, FaJs, FaReact, FaNodeJs, FaFigma} from "react-icons/fa";
+import { FaHtml5, FaCss3, FaJs, FaReact, FaNodeJs, FaFigma, FaWordpress} from "react-icons/fa";
 import {SiTailwindcss, SiNextdotjs} from "react-icons/si";
 
 const about={
@@ -46,8 +46,8 @@ const skills={
             icon:<FaHtml5/>,
         },
         {
-            name:"CSS",
-            icon:<FaCss3/>,
+            name:"WORDPRESS",
+            icon:<FaWordpress/>, 
         },
         {
             name:"JS",
@@ -73,6 +73,7 @@ const skills={
             name:"FIGMA",
             icon:<FaFigma />,  
         },
+       
 
     ]
 };
@@ -99,9 +100,14 @@ export default function Resume() {
                             <div className="flex flex-col gap-[30px]">
                                 <h3 className="text-4xl font-bold">{about.title}</h3>
                                 <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">{about.description}</p>
-                                <ul>
+                                <ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
                                     {about.info.map((info, index) => (
-                                        <li key={index}>
+                                        <li
+                                        key={index}
+                                        className={`flex items-center justify-center xl:justify-start gap-4 ${
+                                            info.fieldName === "Langues" ? "col-span-2 xl:col-span-2 w-full" : ""
+                                        }`}
+                                    >
                                             <span className="text-white/60">{info.fieldName}:</span>
                                             <span className="text-white">{info.fieldValue}</span>
                                         </li>
