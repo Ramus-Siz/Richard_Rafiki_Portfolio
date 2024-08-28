@@ -4,6 +4,9 @@ import Stats from "@/components/Stats";
 import { Button } from "@/components/ui/button";
 import { Section } from "lucide-react";
 import {FiDownload} from "react-icons/fi";
+import Services from "./services/page";
+import Resume from "./resume/page";
+import Contact from "./contact/page";
 
 export default function Home() {
   return (
@@ -32,6 +35,12 @@ export default function Home() {
             <Photo/>
           </div>
         </div>
+      </div>
+      <div>
+        <Contact/>
+      </div>
+      <div>
+        <Services/>
       </div>
     </section>
   );
