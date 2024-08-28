@@ -21,7 +21,14 @@ const links=[
     {
         name:'contact',
         path:"/contact",
-    }] 
+    },
+
+    {
+        name:'Grafiki RDC',
+        path:"https://grafikirdc.com",
+    }
+
+] 
 
 export default function MobileNav() {
     const pathname=usePathname();
