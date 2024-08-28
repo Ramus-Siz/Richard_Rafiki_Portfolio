@@ -7,7 +7,7 @@ import { Select, SelectItem, SelectTrigger, SelectContent, SelectGroup, SelectVa
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import emailjs from '@emailjs/browser';
-import { useRef, useState } from "react";
+import { useState, useRef } from "react";
 
 const infos = [
     {
@@ -18,7 +18,7 @@ const infos = [
     {
         icon: <FaEnvelope />,
         label: "Email",
-        value: "rafiki.richard@grafikirdc.com"
+        value: "rafikirich29@gmail.com"
     },
     {
         icon: <FaMapMarkerAlt />,
@@ -28,36 +28,36 @@ const infos = [
 ];
 
 export default function Contact() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const formRef = useRef();
+    const { register, reset, handleSubmit, formState: { errors }, setValue } = useForm();
+    const form = useRef();
     const [selectedValue, setSelectedValue] = useState('');
 
     const onSubmit = (data) => {
-        // Ajoutez le champ 'service' qui est le Select
-        const formData = {
-            ...data,
+        const templateParams = {
+            firstname: data.firstname,
+            lastname: data.lastname,
+            email: data.email,
+            phone: data.phone,
             service: selectedValue,
+            message: data.message,
         };
 
-        emailjs.sendForm('service_xzlp6mm', 'template_teb2hl3', formRef.current, 'cQN5b5rtedmsEk4b7')
+        emailjs.send('service_xzlp6mm', 'template_teb2hl3', templateParams, 'cQN5b5rtedmsEk4b7')
             .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
-                console.log(selectedValue);
-                
+                reset();
             })
             .catch((error) => {
                 console.error('FAILED...', error);
             });
-
     };
 
     return (
         <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: 2.4, ease: "easeIn" } }} className="py-6">
             <div className="container mx-auto">
                 <div className="flex flex-col xl:flex-row gap-[30px]">
-                    <div className="xl:w-[54%] order-2 xl:order-none">
-                        {/*contact form */}
-                        <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl">
+                    <div className="xl:w-[54%] order-2 xl:order-none ">
+                        <form ref={form} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl">
                             <h3 className="text-4xl text-accent">Travaillons ensemble!</h3>
                             <p className="text-white/60">Une Collaboration pour créer un impact numérique durable.</p>
 
@@ -65,7 +65,6 @@ export default function Contact() {
                                 <Input
                                     {...register("firstname", { required: "Nom est requis" })}
                                     type="text"
-                                    name="firstname"  
                                     placeholder="Nom"
                                 />
                                 {errors.firstname && <p className="text-red-500">{errors.firstname.message}</p>}
@@ -73,7 +72,6 @@ export default function Contact() {
                                 <Input
                                     {...register("lastname", { required: "Prénom est requis" })}
                                     type="text"
-                                    name="lastname"  
                                     placeholder="Prénom"
                                 />
                                 {errors.lastname && <p className="text-red-500">{errors.lastname.message}</p>}
@@ -81,7 +79,6 @@ export default function Contact() {
                                 <Input
                                     {...register("email", { required: "Email est requis", pattern: { value: /^\S+@\S+$/i, message: "Email invalide" } })}
                                     type="email"
-                                    name="email"  // Ajoutez le name ici
                                     placeholder="Email"
                                 />
                                 {errors.email && <p className="text-red-500">{errors.email.message}</p>}
@@ -89,13 +86,12 @@ export default function Contact() {
                                 <Input
                                     {...register("phone", { required: "Téléphone est requis" })}
                                     type="text"
-                                    name="phone"  // Ajoutez le name ici
                                     placeholder="Téléphone"
                                 />
                                 {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
                             </div>
 
-                            <Select onValueChange={(value) => setSelectedValue(value)} value={setSelectedValue}>
+                            <Select onValueChange={setSelectedValue} value={setSelectedValue} >
                                 <SelectTrigger className="w-full bg-primary border border-white/60 text-white/60 hover:border-white focus:border-accent rounded-md">
                                     {selectedValue || "Pour quel service ?"}
                                 </SelectTrigger>
@@ -113,7 +109,6 @@ export default function Contact() {
                             <Textarea
                                 {...register("message", { required: "Message est requis" })}
                                 className="h[200px]"
-                                name="message"  // Ajoutez le name ici
                                 placeholder="Laissez-nous votre message."
                             />
                             {errors.message && <p className="text-red-500">{errors.message.message}</p>}
