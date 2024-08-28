@@ -18,7 +18,7 @@ export default function Photo() {
                 cx="253"
                 cy="253"
                 r="250"
-                stroke="#00ff99"
+                stroke="#0594D0"
                 strokeWidth="4"
                 strokeLinejoin="round"
                 initial={{strokeDasharray:"24 10 0 0"}}

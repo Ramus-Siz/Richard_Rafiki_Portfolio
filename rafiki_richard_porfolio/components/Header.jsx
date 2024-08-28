@@ -16,8 +16,13 @@ export default function Header() {
 
             <div className="hidden xl:flex items-center gap-8">
             <Nav/>
-            <Link href="/contact"></Link>
-            <Button>Me contacter</Button>
+            <Link href="https://grafikirdc.com/">
+                < Button className=" bg-transparent border border-[#0876dd] text-[#0876dd] hover:text-white">Grafiki RDC</Button>
+            </Link>
+            <Link href="/contact">
+                < Button className="text-white hover:bg-[#0876dd]">Me contacter</Button>
+            </Link>
+            
             </div>
             <div className="xl:hidden">
                 <MobileNav/>
