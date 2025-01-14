@@ -7,7 +7,7 @@ export default function Photo() {
         <div className="w-full h-full relative">    
             <motion.div initial={{opacity:0}} animate={{opacity:1, transition:{delay:2, duration:0.4, ease:"easeIn"}}} className="">
                 <div className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px] mix-blend-lighten absolute " >
-                    <Image src="/assets/PDGGrafikiRDC.png" priority quality={100} fill alt="rafiki_richard" className="object-contain" h- ></Image>
+                    <Image src="/assets/user.png" priority quality={100} fill alt="rafiki_richard" className="object-contain" h- ></Image>
                 </div> 
             </motion.div>
 
